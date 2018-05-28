@@ -1,5 +1,5 @@
-require "apify/version"
+require 'apify/version'
+require 'apify/client'
 
 module Apify
-  # Your code goes here...
 end
