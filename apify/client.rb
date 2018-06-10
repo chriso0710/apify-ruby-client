@@ -6,8 +6,8 @@ module Apify
     attr_accessor :uid, :token
 
     def initialize(opts = {})
-      raise ArgumentError, 'Provide block to configure' unless block_given?
-      yield(self)
+      @uid = opts[:uid]
+      @token = opts[:token]
     end
 
     def get_list_of_crawlers(offset: 0, limit: 1000, desc: 1)
@@ -15,6 +15,53 @@ module Apify
         conn.get(
           "#{uid}/crawlers?token=#{token}&offset=#{offset}&limit=#{limit}&desc=#{desc}"
         )
+      end
+    end
+
+    def create_crawler(body: {})
+      call do
+        conn.post do |req|
+          req.url "#{uid}/crawlers?token=#{token}"
+          req.headers['Content-Type'] = 'application/json'
+          req.body = JSON.dump(body)
+        end
+      end
+    end
+
+    # body = {
+    #   "startUrls": [
+    #     {
+    #       "key": "START",
+    #       "value": "https://www.marinetraffic.com/en/ais/details/ships/imo:7326350"
+    #     }
+    #   ]
+    # }
+    def update_crawler_setting(crawler_id:, body: {})
+      call do
+        conn.put do |req|
+          req.url "#{uid}/crawlers/#{crawler_id}?token=#{token}"
+          req.headers['Content-Type'] = 'application/json'
+          req.body = JSON.dump(body)
+        end
+      end
+    end
+
+    def start_execution(crawler_id:, body: {})
+      call do
+        conn.post do |req|
+          req.url "#{uid}/crawlers/#{crawler_id}/execute?token=#{token}"
+          req.headers['Content-Type'] = 'application/json'
+          req.body = JSON.dump(body)
+        end
+      end
+    end
+
+    def get_last_execution(crawler_id:)
+      call do
+        conn.get do |req|
+          req.url "#{uid}/crawlers/#{crawler_id}/lastExec?token=#{token}"
+          req.headers['Content-Type'] = 'application/json'
+        end
       end
     end
 
