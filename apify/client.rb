@@ -65,6 +65,20 @@ module Apify
       end
     end
 
+    def last_execution_success?(crawler_id:)
+      response = get_last_execution(crawler_id: crawler_id)
+      response['status'] == "SUCCEEDED"
+    end
+
+    def get_last_execution_result(execution_id:)
+      call do
+        conn.get do |req|
+          req.url "execs/#{execution_id}/results?format=json&simplified=1"
+          req.headers['Content-Type'] = 'application/json'
+        end
+      end
+    end
+
     private
 
     def conn
