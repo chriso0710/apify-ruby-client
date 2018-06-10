@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "apify/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "apify"
+  spec.name          = "apify-ruby-client"
   spec.version       = Apify::VERSION
   spec.authors       = ["paresharma"]
   spec.email         = ["paresharma@gmail.com"]
