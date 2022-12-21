@@ -1,0 +1,42 @@
+PATH
+  remote: .
+  specs:
+    apify-ruby-client (0.1.0)
+      faraday (~> 2.7)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.5.0)
+    faraday (2.7.2)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
+    rake (13.0.6)
+    rspec (3.12.0)
+      rspec-core (~> 3.12.0)
+      rspec-expectations (~> 3.12.0)
+      rspec-mocks (~> 3.12.0)
+    rspec-core (3.12.0)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-support (3.12.0)
+    ruby2_keywords (0.0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  apify-ruby-client!
+  bundler (~> 2.1)
+  faraday
+  rake (~> 13.0)
+  rspec (~> 3.12)
+
+BUNDLED WITH
+   2.1.4
