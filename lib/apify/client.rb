@@ -1,97 +1,53 @@
 require 'faraday'
-require 'json'
 
 module Apify
-  class Client
-    attr_accessor :uid, :token
+  	class Client
+		URL = 'https://api.apify.com/v2/'
+		EXAMPLE = '{"hashtags": ["bikepacking","paris"],"resultsLimit": 50}'
 
-    def initialize(opts = {})
-      @uid = opts[:uid]
-      @token = opts[:token]
-    end
+		def initialize(opts = {})
+			@token = opts[:token] || "apify_api_Eb0u1798mw2f7tfiQO435aEC0itRKG0iEcdG"
+			@actorid = opts[:actorid] || "zuzka~instagram-hashtag-scraper"
+		end
 
-    def get_list_of_crawlers(offset: 0, limit: 1000, desc: 1)
-      call do
-        conn.get(
-          "#{uid}/crawlers?token=#{token}&offset=#{offset}&limit=#{limit}&desc=#{desc}"
-        )
-      end
-    end
+		def get_actor(params: {}, actorid: @actorid)
+			conn.get("acts/#{actorid}", params)
+		end
 
-    def create_crawler(body: {})
-      call do
-        conn.post do |req|
-          req.url "#{uid}/crawlers?token=#{token}"
-          req.headers['Content-Type'] = 'application/json'
-          req.body = JSON.dump(body)
-        end
-      end
-    end
+		def get_webhooks_for_actor(params: {}, actorid: @actorid)
+			conn.get("acts/#{actorid}/webhooks", params)
+		end
 
-    # body = {
-    #   "startUrls": [
-    #     {
-    #       "key": "START",
-    #       "value": "https://www.marinetraffic.com/en/ais/details/ships/imo:7326350"
-    #     }
-    #   ]
-    # }
-    def update_crawler_setting(crawler_id:, body: {})
-      call do
-        conn.put do |req|
-          req.url "#{uid}/crawlers/#{crawler_id}?token=#{token}"
-          req.headers['Content-Type'] = 'application/json'
-          req.body = JSON.dump(body)
-        end
-      end
-    end
+		def get_actor_run(params: {}, runid:)
+			conn.get("actor-runs/#{runid}", params)
+		end
 
-    def start_execution(crawler_id:, body: {})
-      call do
-        conn.post do |req|
-          req.url "#{uid}/crawlers/#{crawler_id}/execute?token=#{token}"
-          req.headers['Content-Type'] = 'application/json'
-          req.body = JSON.dump(body)
-        end
-      end
-    end
+		def get_dataset(params: {}, datasetid:)
+			conn.get("datasets/#{datasetid}", params)
+		end
 
-    def get_last_execution(crawler_id:)
-      call do
-        conn.get do |req|
-          req.url "#{uid}/crawlers/#{crawler_id}/lastExec?token=#{token}"
-          req.headers['Content-Type'] = 'application/json'
-        end
-      end
-    end
+		def get_dataset_items(params: {}, datasetid:)
+			conn.get("datasets/#{datasetid}/items", params)
+		end
 
-    def last_execution_success?(crawler_id:)
-      response = get_last_execution(crawler_id: crawler_id)
-      response['status'] == "SUCCEEDED"
-    end
+		def run_actor_async(params: {}, body: {}, actorid: @actorid)
+			conn.post("acts/#{actorid}/runs") do |req|
+				req.params = params
+				req.body = body
+			end
+		end
 
-    def get_last_execution_result(execution_id:)
-      call do
-        conn.get do |req|
-          req.url "execs/#{execution_id}/results?format=json&simplified=1"
-          req.headers['Content-Type'] = 'application/json'
-        end
-      end
-    end
+		private
+			
+		def conn
+			@connection ||= Faraday.new(url: URL) do |faraday|
+				faraday.response :logger, nil, { headers: true, bodies: true, errors: true, log_level: :debug }
+				faraday.adapter Faraday.default_adapter
+				faraday.request :json 
+				faraday.response :json
+				faraday.request :authorization, 'Bearer', @token
+			end
+		end
 
-    private
-
-    def conn
-      @_conn ||= Faraday.new(url: 'https://api.apify.com/v1/') do |faraday|
-        faraday.request  :url_encoded
-        faraday.response :logger
-        faraday.adapter  Faraday.default_adapter
-      end
-    end
-
-    def call
-      response = yield
-      JSON.parse response.body
-    end
-  end
+	end
 end

@@ -6,12 +6,12 @@ require "apify/version"
 Gem::Specification.new do |spec|
   spec.name          = "apify-ruby-client"
   spec.version       = Apify::VERSION
-  spec.authors       = ["paresharma"]
-  spec.email         = ["paresharma@gmail.com"]
+  spec.authors       = ["Christian Ott"]
+  spec.email         = ["co@hayvalley.io"]
 
-  spec.summary       = %q{Ruby client for https://www.apify.com/.}
-  spec.description   = %q{Ruby client for https://www.apify.com/.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Ruby client for Apify https://www.apify.com/.}
+  spec.description   = %q{Ruby client for Apify API V2 https://docs.apify.com/api/v2.}
+  spec.homepage      = ""
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -30,7 +30,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_runtime_dependency "faraday", '~> 2.7'
+
+  spec.add_development_dependency "bundler", '~> 2.1'
+  spec.add_development_dependency "rake", '~> 13.0'
+  spec.add_development_dependency "rspec", '~> 3.12'
 end
