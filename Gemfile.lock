@@ -1,24 +1,23 @@
 PATH
   remote: .
   specs:
-    apify_ruby_client (0.1.0)
-      faraday (~> 2.7)
+    apify-ruby-client (0.1.0)
+      faraday (~> 0.9)
 
 GEM
   remote: https://rubygems.org/
   specs:
     ansi (1.5.0)
     builder (3.2.4)
-    faraday (2.7.4)
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.2)
+    faraday (0.17.6)
+      multipart-post (>= 1.2, < 3)
     minitest (5.16.3)
     minitest-reporters (1.5.0)
       ansi
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    multipart-post (2.3.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.8)
@@ -44,7 +43,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  apify_ruby_client!
+  apify-ruby-client!
   minitest (~> 5.0)
   minitest-reporters (~> 1.1)
   puma (~> 6.0)
