@@ -1,7 +1,7 @@
 require_relative 'lib/apify/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "apify_ruby_client"
+  spec.name          = "apify-ruby-client"
   spec.version       = Apify::VERSION
   spec.authors       = ["Christian Ott"]
   spec.email         = ["co@hayvalley.io"]
