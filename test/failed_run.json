@@ -1,0 +1,10 @@
+{
+    "userId": "qfdkwg3fXaNMdR5MM",
+    "createdAt": "2023-01-30T12:15:24.521Z",
+    "eventType": "ACTOR.RUN.FAILED",
+    "eventData": {
+        "actorId": "reGe1ST3OBgYZSsZJ",
+        "actorRunId": "sKSx9HD3VWVWZyvza"
+    },
+    "resource": null
+}

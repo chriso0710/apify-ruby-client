@@ -3,18 +3,17 @@ require 'faraday'
 module Apify
   	class Client
 		URL = 'https://api.apify.com/v2/'
-		EXAMPLE = '{"hashtags": ["bikepacking","paris"],"resultsLimit": 50}'
-
+		
 		def initialize(opts = {})
-			@token = opts[:token] || "apify_api_Eb0u1798mw2f7tfiQO435aEC0itRKG0iEcdG"
-			@actorid = opts[:actorid] || "zuzka~instagram-hashtag-scraper"
+			@token = opts[:token] || ENV["APIFY_TOKEN"]
+			@actorid = opts[:actorid]
 		end
 
 		def get_actor(params: {}, actorid: @actorid)
 			conn.get("acts/#{actorid}", params)
 		end
 
-		def get_webhooks_for_actor(params: {}, actorid: @actorid)
+		def get_actor_webhooks(params: {}, actorid: @actorid)
 			conn.get("acts/#{actorid}/webhooks", params)
 		end
 
@@ -41,10 +40,10 @@ module Apify
 			
 		def conn
 			@connection ||= Faraday.new(url: URL) do |faraday|
-				faraday.response :logger, nil, { headers: true, bodies: true, errors: true, log_level: :debug }
+				faraday.response :logger, nil, { headers: false, bodies: false, errors: true, log_level: :info }
 				faraday.adapter Faraday.default_adapter
 				faraday.request :json 
-				faraday.response :json
+				faraday.response :json, parser_options: { symbolize_names: true }
 				faraday.request :authorization, 'Bearer', @token
 			end
 		end

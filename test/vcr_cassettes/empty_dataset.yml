@@ -1,0 +1,141 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.apify.com/v2/datasets/WmrVuHiUKXxDrr7s9
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Authorization:
+      - Bearer <TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Tue, 31 Jan 2023 15:07:33 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      cache-control:
+      - no-cache, no-store, must-revalidate
+      pragma:
+      - no-cache
+      expires:
+      - '0'
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - User-Agent, Content-Type, X-Apify-Request-Origin
+      access-control-allow-methods:
+      - GET, PUT, DELETE
+      access-control-expose-headers:
+      - X-Apify-Pagination-Total, X-Apify-Pagination-Offset, X-Apify-Pagination-Desc,
+        X-Apify-Pagination-Count, X-Apify-Pagination-Limit
+      referrer-policy:
+      - no-referrer
+      x-robots-tag:
+      - none
+      x-ratelimit-limit:
+      - '30'
+      etag:
+      - W/"8b4-w4zy8zpKfA/jVQ9eE/wZPkXUgwE"
+      vary:
+      - Accept-Encoding
+      content-encoding:
+      - gzip
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "data": {
+            "id": "WmrVuHiUKXxDrr7s9",
+            "userId": "qfdkwg3fXaNMdR5MM",
+            "createdAt": "2023-01-31T07:34:38.886Z",
+            "modifiedAt": "2023-01-31T07:34:38.886Z",
+            "accessedAt": "2023-01-31T15:03:35.325Z",
+            "itemCount": 0,
+            "cleanItemCount": 0,
+            "actId": "reGe1ST3OBgYZSsZJ",
+            "actRunId": "MlnFmVu7I8VVIkrKp",
+            "schema": {
+              "actorSpecification": 1,
+              "title": "Instagram Hashtag Scraper",
+              "description": "Too see all scraped properties, export the whole dataset or select All fields instead of Overview",
+              "views": {
+                "overview": {
+                  "title": "Overview",
+                  "description": "",
+                  "transformation": {
+                    "fields": [
+                      "caption",
+                      "ownerFullName",
+                      "ownerUsername",
+                      "url",
+                      "commentsCount",
+                      "firstComment",
+                      "likesCount",
+                      "timestamp",
+                      "queryTag"
+                    ]
+                  },
+                  "display": {
+                    "component": "table",
+                    "columns": [
+                      {
+                        "label": "Text",
+                        "format": "text",
+                        "field": "caption"
+                      },
+                      {
+                        "label": "Post URL",
+                        "format": "link",
+                        "field": "url"
+                      },
+                      {
+                        "label": "Number of comments",
+                        "format": "text",
+                        "field": "commentsCount"
+                      },
+                      {
+                        "label": "First comment",
+                        "format": "text",
+                        "field": "firstComment"
+                      },
+                      {
+                        "label": "Number of likes",
+                        "format": "text",
+                        "field": "likesCount"
+                      },
+                      {
+                        "label": "Posted on",
+                        "format": "text",
+                        "field": "timestamp"
+                      },
+                      {
+                        "label": "Author",
+                        "format": "text",
+                        "field": "ownerUsername"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "stats": {
+              "readCount": 0,
+              "writeCount": 0,
+              "storageBytes": 0
+            },
+            "fields": []
+          }
+        }
+  recorded_at: Tue, 31 Jan 2023 15:07:33 GMT
+recorded_with: VCR 6.1.0

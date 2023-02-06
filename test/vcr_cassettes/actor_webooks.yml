@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.apify.com/v2/acts/zuzka~instagram-hashtag-scraper/webhooks
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.2
+      Authorization:
+      - Bearer <TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Thu, 05 Jan 2023 11:25:05 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      cache-control:
+      - no-cache, no-store, must-revalidate
+      pragma:
+      - no-cache
+      expires:
+      - '0'
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - User-Agent, Content-Type, X-Apify-Request-Origin
+      access-control-allow-methods:
+      - GET
+      access-control-expose-headers:
+      - X-Apify-Pagination-Total, X-Apify-Pagination-Offset, X-Apify-Pagination-Desc,
+        X-Apify-Pagination-Count, X-Apify-Pagination-Limit
+      referrer-policy:
+      - no-referrer
+      x-robots-tag:
+      - none
+      x-ratelimit-limit:
+      - '30'
+      x-apify-pagination-total:
+      - '1'
+      x-apify-pagination-offset:
+      - '0'
+      x-apify-pagination-count:
+      - '1'
+      x-apify-pagination-limit:
+      - '1000'
+      x-apify-pagination-desc:
+      - 'false'
+      vary:
+      - Accept-Encoding
+      content-encoding:
+      - gzip
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "data": {
+            "total": 1,
+            "count": 1,
+            "offset": 0,
+            "limit": 1000,
+            "desc": false,
+            "items": [
+              {
+                "id": "7ybKLa47f09y8yGbj",
+                "createdAt": "2022-12-21T10:18:03.142Z",
+                "modifiedAt": "2023-01-05T11:24:26.302Z",
+                "userId": "qfdkwg3fXaNMdR5MM",
+                "isEnabled": true,
+                "isAdHoc": false,
+                "eventTypes": [
+                  "ACTOR.RUN.SUCCEEDED",
+                  "ACTOR.RUN.FAILED",
+                  "ACTOR.RUN.TIMED_OUT"
+                ],
+                "condition": {
+                  "actorId": "reGe1ST3OBgYZSsZJ"
+                },
+                "ignoreSslErrors": false,
+                "doNotRetry": false,
+                "requestUrl": "https://example.com/apify",
+                "payloadTemplate": "{\n    \"userId\": {{userId}},\n    \"createdAt\": {{createdAt}},\n    \"eventType\": {{eventType}},\n    \"eventData\": {{eventData}},\n    \"resource\": {{resource}}\n}",
+                "lastDispatch": {
+                  "status": "FAILED",
+                  "finishedAt": "2022-12-23T03:14:31.586Z"
+                },
+                "stats": {
+                  "totalDispatches": 2
+                },
+                "actionType": "HTTP_REQUEST"
+              }
+            ]
+          }
+        }
+  recorded_at: Thu, 05 Jan 2023 11:25:05 GMT
+recorded_with: VCR 6.1.0

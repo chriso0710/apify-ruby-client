@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.apify.com/v2/acts/zuzka~instagram-hashtag-scraper/runs
+    body:
+      encoding: UTF-8
+      string: '{"hashtags":["bikepacking","paris"],"resultsLimit":50}'
+    headers:
+      User-Agent:
+      - Faraday v2.7.2
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <TOKEN>
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      date:
+      - Mon, 30 Jan 2023 12:11:31 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      cache-control:
+      - no-cache, no-store, must-revalidate
+      pragma:
+      - no-cache
+      expires:
+      - '0'
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-headers:
+      - User-Agent, Content-Type, X-Apify-Request-Origin
+      access-control-allow-methods:
+      - GET, POST
+      access-control-expose-headers:
+      - X-Apify-Pagination-Total, X-Apify-Pagination-Offset, X-Apify-Pagination-Desc,
+        X-Apify-Pagination-Count, X-Apify-Pagination-Limit
+      referrer-policy:
+      - no-referrer
+      x-robots-tag:
+      - none
+      x-ratelimit-limit:
+      - '200'
+      location:
+      - https://api.apify.com/v2/acts/reGe1ST3OBgYZSsZJ/runs/sKSx9HD3VWVWZyvza
+      vary:
+      - Accept-Encoding
+      content-encoding:
+      - gzip
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "data": {
+            "id": "sKSx9HD3VWVWZyvza",
+            "actId": "reGe1ST3OBgYZSsZJ",
+            "userId": "qfdkwg3fXaNMdR5MM",
+            "startedAt": "2023-01-30T12:11:31.628Z",
+            "finishedAt": null,
+            "status": "READY",
+            "meta": {
+              "origin": "API",
+              "userAgent": "Faraday v2.7.2"
+            },
+            "stats": {
+              "inputBodyLen": 54,
+              "restartCount": 0,
+              "resurrectCount": 0,
+              "computeUnits": 0
+            },
+            "options": {
+              "build": "latest",
+              "timeoutSecs": 10000,
+              "memoryMbytes": 4096,
+              "diskMbytes": 8192
+            },
+            "buildId": "zgpxzahT8WXe1rsui",
+            "defaultKeyValueStoreId": "dZgZcilAGqyoZBT5e",
+            "defaultDatasetId": "mUQjPuALPFYWxiv0q",
+            "defaultRequestQueueId": "6GHmJPGoEq155J4lQ",
+            "buildNumber": "0.0.87",
+            "containerUrl": "https://lxwssneobm6e.runs.apify.net",
+            "usage": {
+              "ACTOR_COMPUTE_UNITS": 0,
+              "DATASET_READS": 0,
+              "DATASET_WRITES": 0,
+              "KEY_VALUE_STORE_READS": 0,
+              "KEY_VALUE_STORE_WRITES": 1,
+              "KEY_VALUE_STORE_LISTS": 0,
+              "REQUEST_QUEUE_READS": 0,
+              "REQUEST_QUEUE_WRITES": 0,
+              "DATA_TRANSFER_INTERNAL_GBYTES": 0,
+              "DATA_TRANSFER_EXTERNAL_GBYTES": 0,
+              "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0,
+              "PROXY_SERPS": 0
+            }
+          }
+        }
+  recorded_at: Mon, 30 Jan 2023 12:11:31 GMT
+recorded_with: VCR 6.1.0

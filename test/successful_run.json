@@ -1,0 +1,73 @@
+{
+    "userId": "qfdkwg3fXaNMdR5MM",
+    "createdAt": "2023-01-30T12:15:24.521Z",
+    "eventType": "ACTOR.RUN.SUCCEEDED",
+    "eventData": {
+        "actorId": "reGe1ST3OBgYZSsZJ",
+        "actorRunId": "sKSx9HD3VWVWZyvza"
+    },
+    "resource": {
+        "id": "sKSx9HD3VWVWZyvza",
+        "actId": "reGe1ST3OBgYZSsZJ",
+        "userId": "qfdkwg3fXaNMdR5MM",
+        "startedAt": "2023-01-30T12:11:31.628Z",
+        "finishedAt": "2023-01-30T12:15:21.283Z",
+        "status": "SUCCEEDED",
+        "meta": {
+            "origin": "API",
+            "userAgent": "Faraday v2.7.2"
+        },
+        "stats": {
+            "inputBodyLen": 54,
+            "restartCount": 0,
+            "durationMillis": 226992,
+            "resurrectCount": 0,
+            "runTimeSecs": 226.99200000000002,
+            "metamorph": 1,
+            "computeUnits": 0.25221333333333334,
+            "memAvgBytes": 127635138.19972736,
+            "memMaxBytes": 153608192,
+            "memCurrentBytes": 133738496,
+            "cpuAvgUsage": 6.665718555334063,
+            "cpuMaxUsage": 114.00369636803873,
+            "cpuCurrentUsage": 0.771742833627278,
+            "netRxBytes": 57301661,
+            "netTxBytes": 19680677
+        },
+        "options": {
+            "build": "latest",
+            "timeoutSecs": 10000,
+            "memoryMbytes": 4096,
+            "diskMbytes": 8192
+        },
+        "buildId": "zgpxzahT8WXe1rsui",
+        "exitCode": 0,
+        "defaultKeyValueStoreId": "dZgZcilAGqyoZBT5e",
+        "defaultDatasetId": "mUQjPuALPFYWxiv0q",
+        "defaultRequestQueueId": "6GHmJPGoEq155J4lQ",
+        "metamorphs": [
+            {
+                "createdAt": "2023-01-30T12:11:38.278Z",
+                "actorId": "fsBDhyILfcOvwqvQY",
+                "buildId": "LbOw0kvJPZIG519nL",
+                "inputKey": "INPUT-METAMORPH-1"
+            }
+        ],
+        "buildNumber": "0.0.87",
+        "containerUrl": "https://lxwssneobm6e.runs.apify.net",
+        "usage": {
+            "ACTOR_COMPUTE_UNITS": 0.25221333333333334,
+            "DATASET_READS": 0,
+            "DATASET_WRITES": 100,
+            "KEY_VALUE_STORE_READS": 2,
+            "KEY_VALUE_STORE_WRITES": 11,
+            "KEY_VALUE_STORE_LISTS": 0,
+            "REQUEST_QUEUE_READS": 2282,
+            "REQUEST_QUEUE_WRITES": 296,
+            "DATA_TRANSFER_INTERNAL_GBYTES": 0.011276362463831902,
+            "DATA_TRANSFER_EXTERNAL_GBYTES": 0.015288732014596462,
+            "PROXY_RESIDENTIAL_TRANSFER_GBYTES": 0.002353391610085964,
+            "PROXY_SERPS": 0
+        }
+    }
+}

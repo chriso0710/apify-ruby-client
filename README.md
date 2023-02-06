@@ -1,15 +1,26 @@
-# Apify
+# Apify Ruby Client
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/apify`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem implements the following Apify V2 API calls:
 
-TODO: Delete this and the text above, and describe your gem
+* GET acts/#{actorid}
+* GET acts/#{actorid}/webhooks
+* POST actor-runs/#{runid}
+* GET datasets/#{datasetid}
+* GET datasets/#{datasetid}/items
+* GET acts/#{actorid}/runs
+
+It uses the Faraday gem (https://github.com/lostisland/faraday) for making API requests.
+Actors can be run asynchronously, webhooks can be received and datasets can be retrieved.
+That was enough for my current needs.
+
+See the full API documentation at https://docs.apify.com/api/v2
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your applications Gemfile:
 
 ```ruby
-gem 'apify'
+gem 'apify-ruby-client'
 ```
 
 And then execute:
@@ -18,22 +29,39 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install apify
+    $ gem install apify-ruby-client
 
 ## Usage
 
-TODO: Write usage instructions here
+The gem gets your API token from your environment variables as
+
+    ENV["APIFY_TOKEN"]
+
+You can also set the token when initializing the client:
+
+```ruby
+c = Apify::Client.new({token: "sometoken"})
+```
+
+Example for running an actor asynchronously:
+
+```ruby
+c = Apify::Client.new
+c.run_actor_async(actorid: "someactor", body: {foo: "bar"})
+```
+
+See the tests for more usage examples in ```test/apify_test.rb```.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Run ```rake test``` to run the tests. 
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+All tests use VCR (https://github.com/vcr/vcr) with prerecorded responses from APIFY.
+Webhooks are mocked with prerecorded json payloads, which are sent to a minimal sinatra webserver (```test/server.rb```). 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/apify.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/chriso0710/apify-ruby-client.
 
 ## License
 

@@ -1,42 +1,57 @@
 PATH
   remote: .
   specs:
-    apify-ruby-client (0.1.0)
+    apify_ruby_client (0.1.0)
       faraday (~> 2.7)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    diff-lcs (1.5.0)
-    faraday (2.7.2)
+    ansi (1.5.0)
+    builder (3.2.4)
+    faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
-    rake (13.0.6)
-    rspec (3.12.0)
-      rspec-core (~> 3.12.0)
-      rspec-expectations (~> 3.12.0)
-      rspec-mocks (~> 3.12.0)
-    rspec-core (3.12.0)
-      rspec-support (~> 3.12.0)
-    rspec-expectations (3.12.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.12.0)
-    rspec-mocks (3.12.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.12.0)
-    rspec-support (3.12.0)
+    minitest (5.16.3)
+    minitest-reporters (1.5.0)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
+    mustermann (3.0.0)
+      ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.8)
+    puma (6.0.2)
+      nio4r (~> 2.0)
+    rack (2.2.5)
+    rack-protection (3.0.5)
+      rack
+    rack-test (2.0.2)
+      rack (>= 1.3)
+    rake (12.3.3)
+    ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
+    sinatra (3.0.5)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.0.5)
+      tilt (~> 2.0)
+    tilt (2.0.11)
+    vcr (6.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  apify-ruby-client!
-  bundler (~> 2.1)
-  faraday
-  rake (~> 13.0)
-  rspec (~> 3.12)
+  apify_ruby_client!
+  minitest (~> 5.0)
+  minitest-reporters (~> 1.1)
+  puma (~> 6.0)
+  rack-test (~> 2.0)
+  rake (~> 12.0)
+  sinatra (~> 3.0)
+  vcr (~> 6.0)
 
 BUNDLED WITH
    2.1.4
