@@ -7,6 +7,15 @@ class ApifyTest < Minitest::Test
 	DATASETID 	= "mUQjPuALPFYWxiv0q"
 	HASHTAGS	= {hashtags: ["bikepacking","paris"], resultsLimit: 50}
 
+	def valid_json?(json)
+  		begin
+    		JSON.parse(json)
+    		return true
+  		rescue Exception
+    		return false
+  		end
+	end
+
 	def test_that_it_has_a_version_number
 		refute_nil ::Apify::VERSION
 	end
@@ -16,7 +25,9 @@ class ApifyTest < Minitest::Test
 			c = Apify::Client.new
 			r = c.get_actor(actorid: ACTORID)
 			assert_equal 200, r.status
-			assert_equal ACTORNAME, r.body[:data][:name]
+			assert valid_json? r.body
+			j = JSON.parse r.body
+			assert_equal ACTORNAME, j["data"]["name"]
 		end	
 	end
 
@@ -25,7 +36,9 @@ class ApifyTest < Minitest::Test
 			c = Apify::Client.new
 			r = c.get_actor_webhooks(actorid: ACTORID)
 			assert_equal 200, r.status
-			assert_equal 1, r.body[:data][:total]
+			assert valid_json? r.body
+			j = JSON.parse r.body
+			assert_equal 1, j["data"]["total"]
 		end	
 	end
 
@@ -34,7 +47,9 @@ class ApifyTest < Minitest::Test
 			c = Apify::Client.new
 			r = c.run_actor_async(actorid: ACTORID, body: HASHTAGS)
 			assert_equal 201, r.status
-			assert_equal "READY", r.body[:data][:status]
+			assert valid_json? r.body
+			j = JSON.parse r.body
+			assert_equal "READY", j["data"]["status"]
 		end
 	end
 
@@ -43,8 +58,10 @@ class ApifyTest < Minitest::Test
 			c = Apify::Client.new
 			r = c.get_actor_run(runid: RUNID)
 			assert_equal 200, r.status
-			assert_equal "SUCCEEDED", r.body[:data][:status]
-			assert_equal DATASETID, r.body[:data][:defaultDatasetId]
+			assert valid_json? r.body
+			j = JSON.parse r.body
+			assert_equal "SUCCEEDED", j["data"]["status"]
+			assert_equal DATASETID, j["data"]["defaultDatasetId"]
 		end
 	end
 	
@@ -52,8 +69,10 @@ class ApifyTest < Minitest::Test
 		VCR.use_cassette("dataset") do
 			c = Apify::Client.new
 			r = c.get_dataset(datasetid: DATASETID)
+			assert valid_json? r.body
+			j = JSON.parse r.body
 			assert_equal 200, r.status
-			assert_equal 100, r.body[:data][:itemCount]
+			assert_equal 100, j["data"]["itemCount"]
 		end
 	end
 
@@ -61,8 +80,10 @@ class ApifyTest < Minitest::Test
 		VCR.use_cassette("empty_dataset") do
 			c = Apify::Client.new
 			r = c.get_dataset(datasetid: "WmrVuHiUKXxDrr7s9")
+			assert valid_json? r.body
+			j = JSON.parse r.body
 			assert_equal 200, r.status
-			assert_equal 0, r.body[:data][:itemCount]
+			assert_equal 0, j["data"]["itemCount"]
 		end
 	end
 
@@ -71,12 +92,14 @@ class ApifyTest < Minitest::Test
 			c = Apify::Client.new
 			r = c.get_dataset_items(params: {omit: "taggedUsers, childPosts"}, datasetid: DATASETID)
 			assert_equal 200, r.status
-			assert_equal 100, r.body.size
-			post = r.body[0]
-			assert_equal "CoCfAv2I5Rp", post[:shortCode]
-			assert_match "fbcdn.net", post[:displayUrl]
-			assert_equal "grizzlynotations", post[:ownerUsername]
-			assert_match "#bikepacking", post[:caption]
+			assert valid_json? r.body
+			j = JSON.parse r.body
+			assert_equal 100, j.size
+			post = j[0]
+			assert_equal "CoCfAv2I5Rp", post["shortCode"]
+			assert_match "fbcdn.net", post["displayUrl"]
+			assert_equal "grizzlynotations", post["ownerUsername"]
+			assert_match "#bikepacking", post["caption"]
 		end
 	end
 	

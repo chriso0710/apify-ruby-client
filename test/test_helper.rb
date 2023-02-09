@@ -10,6 +10,6 @@ Minitest::Reporters.use!
 
 VCR.configure do |config|
     config.cassette_library_dir = "test/vcr_cassettes"
-    config.hook_into :faraday
+    config.hook_into :excon
     config.filter_sensitive_data('<TOKEN>') { ENV['APIFY_TOKEN'] }
 end
