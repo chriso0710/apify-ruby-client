@@ -9,7 +9,7 @@ This gem implements the following Apify V2 API calls:
 * GET datasets/#{datasetid}/items
 * GET acts/#{actorid}/runs
 
-It uses the Faraday gem (https://github.com/lostisland/faraday) for making API requests.
+It uses the Excon gem (https://github.com/excon/excon) for making API requests.
 Actors can be run asynchronously, webhooks can be received and datasets can be retrieved.
 That was enough for my current needs.
 
@@ -47,7 +47,7 @@ Example for running an actor asynchronously:
 
 ```ruby
 c = Apify::Client.new
-c.run_actor_async(actorid: "someactor", body: {foo: "bar"})
+c.run_actor_async(actorid: "someactor", body: {foo: "bar"}.json)
 ```
 
 See the tests for more usage examples in ```test/apify_test.rb```.
@@ -56,7 +56,7 @@ See the tests for more usage examples in ```test/apify_test.rb```.
 
 Run ```rake test``` to run the tests. 
 
-All tests use VCR (https://github.com/vcr/vcr) with prerecorded responses from APIFY.
+All tests use VCR (https://github.com/vcr/vcr) with prerecorded responses from Apify.
 Webhooks are mocked with prerecorded json payloads, which are sent to a minimal sinatra webserver (```test/server.rb```). 
 
 ## Contributing
